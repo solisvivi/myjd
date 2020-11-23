@@ -89,7 +89,7 @@ async function jdSuperMarket() {
   await businessCircleActivity();//商圈活动
   await receiveBlueCoin();//收蓝币（小费）
   await receiveLimitProductBlueCoin();//收限时商品的蓝币
-//  await smtgSign();//每日签到
+  await smtgSign();//每日签到
   await smtgBeanSign()//
   await doDailyTask();//做日常任务，分享，关注店铺，
   await help();//商圈助力
