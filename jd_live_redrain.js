@@ -67,7 +67,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         continue
       }
       let nowTs = new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000
-      // console.log(nowTs, $.startTime, $.endTime)
+      console.log(nowTs, $.startTime, $.endTime)
       if ($.startTime <= nowTs && nowTs < $.endTime) {
         await receiveRedRain();
       } else {
