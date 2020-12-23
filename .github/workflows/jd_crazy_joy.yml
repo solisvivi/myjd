@@ -35,6 +35,7 @@ jobs:
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           JDJOY_SHARECODES: ${{ secrets.JDJOY_SHARECODES }}
           JDJOY_HELPSELF: ${{ secrets.JDJOY_HELPSELF }}
+          JDJOY_APPLYJDBEAN: ${{ secrets.JDJOY_APPLYJDBEAN }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
           BARK_SOUND: ${{ secrets.BARK_SOUND }}
