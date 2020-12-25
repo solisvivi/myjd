@@ -14,11 +14,14 @@
         
 ### 方法三：GitHub Action（推荐）
 
- - 使用教程暂且可看 [这里](githubAction.md)
+ - 使用教程暂且可看   [这里](githubAction.md)  
  
-### 方法四：Docker（NAS或VPS用户）
+### 方法四：Docker（NAS或VPS用户）   
+
 
  - 可以精确控制任务运行时间，有三种办法：[docker办法一](https://github.com/lxk0301/scripts/tree/master/docker)、[docker办法二（和本地安装Node.js有点类似）](https://github.com/EvineDeng/jd-base)、[docker办法三](https://github.com/chinnkarahoi/jd-scripts-docker)
 
 #### 注：以上四种运行机制都是Node.js，故您需仔细阅读下面几点
+
+
 
