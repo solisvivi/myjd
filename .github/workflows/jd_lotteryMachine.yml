@@ -6,11 +6,11 @@ name: jd_lotteryMachine
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '0 14 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: 818
+    types: lotteryMachine
 jobs:
   build:
 
