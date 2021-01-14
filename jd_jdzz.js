@@ -106,7 +106,7 @@ async function jdWish() {
   // if (!$.tuan) {
   //  await openTuan()
    // if ($.hasOpen) await getUserTuanInfo()
-  }
+  // }
  // if ($.tuan) $.tuanList.push($.tuan)
 
   await helpFriends()
