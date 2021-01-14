@@ -52,8 +52,8 @@ const inviteCodes = [
 !(async () => {
   $.tuanList = []
   await requireConfig();
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/shylocks/updateTeam/raw/main/jd_zz.json');
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/lxk0301/updateTeam/raw/master/jd_zz.json');
+ //  if (helpAuthor) await getAuthorShareCode('https://gitee.com/shylocks/updateTeam/raw/main/jd_zz.json');
+ // if (helpAuthor) await getAuthorShareCode('https://gitee.com/lxk0301/updateTeam/raw/master/jd_zz.json');
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
     return;
@@ -80,12 +80,12 @@ const inviteCodes = [
       await jdWish()
     }
   }
-  for (let i = 0; i < cookiesArr.length; i++) {
-    $.canHelp = true
+ for (let i = 0; i < cookiesArr.length; i++) {
+  $.canHelp = true
     if (cookiesArr[i]) {
-      cookie = cookiesArr[i];
+     cookie = cookiesArr[i];
       for (let j = 0; j < $.tuanList.length; ++j) {
-        await helpFriendTuan($.tuanList[j])
+       // await helpFriendTuan($.tuanList[j])
         if(!$.canHelp) break
       }
     }
@@ -102,12 +102,12 @@ async function jdWish() {
   $.bean = 0
   $.tuan = null
   $.hasOpen = false
-  await getUserTuanInfo()
-  if (!$.tuan) {
-    await openTuan()
-    if ($.hasOpen) await getUserTuanInfo()
+  // await getUserTuanInfo()
+  // if (!$.tuan) {
+  //  await openTuan()
+   // if ($.hasOpen) await getUserTuanInfo()
   }
-  if ($.tuan) $.tuanList.push($.tuan)
+ // if ($.tuan) $.tuanList.push($.tuan)
 
   await helpFriends()
   await getUserInfo()
