@@ -27,7 +27,7 @@ jobs:
           npm install
       - name: '运行 【京东年兽签到脚本】'
         run: |
-          node jd_car.js
+          node jd_nian_sign.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
