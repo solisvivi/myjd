@@ -1,6 +1,5 @@
 /*
 苹果抽奖机
-脚本会给内置的码进行助力
 活动于2020-12-14日结束
 活动地址：https://h5.m.jd.com/babelDiy/Zeus/2zwQnu4WHRNfqMSdv69UPgpZMnE2/index.html/
 已支持IOS双京东账号,Node.js支持N个京东账号
@@ -35,16 +34,10 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
 } else {
-  let cookiesData = $.getdata('CookiesJD') || "[]";
-  cookiesData = jsonParse(cookiesData);
-  cookiesArr = cookiesData.map(item => item.cookie);
-  cookiesArr.reverse();
-  cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
-  cookiesArr.reverse();
-  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
+  cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')]);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = [`P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2bx3y5Ow@P04z54XCjVUm4aW5u2ak7ZCdan1BeYMuZ9HwF34gJjW@P04z54XCjVUm4aW5m9cZ2T6jChKkkjZEdhiKUY`, `P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2bx3y5Ow`];
+const inviteCodes = [`P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2bx3y5Ow`, `P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2bx3y5Ow`];
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -66,6 +59,8 @@ const inviteCodes = [`P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2b
 
         if ($.isNode()) {
           await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        } else {
+          $.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
         }
         continue
       }
@@ -81,7 +76,7 @@ const inviteCodes = [`P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2b
       $.done();
     })
 async function jdHealth() {
-  await helpFriends();
+  // await helpFriends();
   await jdapple_getTaskDetail();
   await doTask();
   await jdapple_getTaskDetail(0);
@@ -283,7 +278,7 @@ function readShareCode() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
+            console.log(`随机取${randomCount}个码放到您固定的互助码后面`)
             data = JSON.parse(data);
           }
         }
@@ -402,17 +397,6 @@ function safeGet(data) {
     console.log(e);
     console.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
     return false;
-  }
-}
-function jsonParse(str) {
-  if (typeof str == "string") {
-    try {
-      return JSON.parse(str);
-    } catch (e) {
-      console.log(e);
-      $.msg($.name, '', '请勿随意在BoxJs输入框修改内容\n建议通过脚本去获取cookie')
-      return [];
-    }
   }
 }
 // prettier-ignore

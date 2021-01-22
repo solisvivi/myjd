@@ -35,13 +35,7 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
 } else {
-  let cookiesData = $.getdata('CookiesJD') || "[]";
-  cookiesData = jsonParse(cookiesData);
-  cookiesArr = cookiesData.map(item => item.cookie);
-  cookiesArr.reverse();
-  cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
-  cookiesArr.reverse();
-  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
+  cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')]);
 }
 const JD_API_HOST = 'https://api.m.jd.com/api';
 !(async () => {
@@ -64,6 +58,8 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
 
         if ($.isNode()) {
           await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        } else {
+          $.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
         }
         continue
       }
@@ -83,14 +79,8 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     })
 
 function showMsg() {
-  return new Promise(async resolve => {
-    let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
-    if (nowTime > new Date('2020/12/31 23:59:59+08:00').getTime()) {
-      $.msg($.name, '活动已结束', `咱江湖再见\nhttps://github.com/lxk0301/jd_scripts`, {"open-url": "https://github.com/lxk0301/jd_scripts"});
-      if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `咱江湖再见\n https://github.com/lxk0301/jd_scripts`)
-    } else {
-      $.msg($.name, '', `京东账号${$.index} ${$.nickName}\n${message}`);
-    }
+  return new Promise(resolve => {
+    $.msg($.name, '', `【京东账号${$.index}】${$.nickName}\n${message}`);
     resolve()
   })
 }
@@ -191,17 +181,6 @@ function safeGet(data) {
     console.log(e);
     console.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
     return false;
-  }
-}
-function jsonParse(str) {
-  if (typeof str == "string") {
-    try {
-      return JSON.parse(str);
-    } catch (e) {
-      console.log(e);
-      $.msg($.name, '', '请勿随意在BoxJs输入框修改内容\n建议通过脚本去获取cookie')
-      return [];
-    }
   }
 }
 // prettier-ignore
