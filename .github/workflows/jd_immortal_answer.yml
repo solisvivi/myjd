@@ -6,7 +6,7 @@ name: jd_immortal_answer
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16,0,2,4 * * *'
+    - cron: '0 0 * * *'
   watch:
     types: started
   repository_dispatch:
