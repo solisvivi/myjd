@@ -141,7 +141,7 @@ async function jdNian() {
     await $.wait(1000)
     await doTask()
     await $.wait(2000)
-    // await helpFriends()
+    await helpFriends()
     await $.wait(2000)
     await getSpecialGiftDetail()
     await $.wait(2000)
