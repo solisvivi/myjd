@@ -82,18 +82,18 @@ $.invites = [];
       await jdGlobal()
     }
   }
-  for (let i = 0; i < cookiesArr.length; i++) {
-    if (cookiesArr[i]) {
-      cookie = cookiesArr[i];
-      $.canHelp = true;
-      for (let code of $.invites) {
-        if (!code) continue
-        await helpFriend(code)
-        if(!$.canHelp) break
-        await $.wait(1000)
-      }
-    }
-  }
+ // for (let i = 0; i < cookiesArr.length; i++) {
+  //  if (cookiesArr[i]) {
+   //   cookie = cookiesArr[i];
+   //   $.canHelp = true;
+    //  for (let code of $.invites) {
+    //    if (!code) continue
+     //   await helpFriend(code)
+     //   if(!$.canHelp) break
+    //    await $.wait(1000)
+   //   }
+   // }
+ // }
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
