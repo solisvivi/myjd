@@ -1,16 +1,15 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jd_festival
-
+name: jd_global
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '0 16,0,2,4 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: festival
+    types: global
 jobs:
   build:
 
@@ -25,13 +24,14 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京东手机年终奖脚本】'
+      - name: '运行 【京东国际环球挑战赛脚本】'
         run: |
-          node jd_festival.js
+          node jd_global.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          JDGLOBAL_SHARECODES: ${{ secrets.JDGLOBAL_SHARECODES }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
